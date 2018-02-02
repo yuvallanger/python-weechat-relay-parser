@@ -14,7 +14,7 @@ setup(
     author="Yuval Langer",
     author_email="yuval.langer@gmail.com",
     description="WeeChat Relay Protocol parser",
-    license="AGPL3+",
+    license="LGPL3+",
     keywords="irc weechat relay protocol parser",
     url="https://gitgud.io/yuvallanger/weechat-relay-parser/",
 )
