@@ -4,7 +4,7 @@ from setuptools import (
 )
 
 setup(
-    name="weechat-relay-parser",
+    name="weechat_relay_parser",
     version="0.0.1.dev1",
     packages=find_packages('src'),
     package_dir={'': 'src'},
