@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 
-from typing import (
+from typing import (  # noqa: F401
     Sequence,
     Dict,
+    NamedTuple,
+    NewType,
+    Any,
 )
 
 import bitstring
 
 
-class Object(object):
-    pass
-
-
-class SignedChar(Object):
+class SignedChar(NamedTuple):
     def __init__(self, data: bitstring.Bits) -> None:
         self.data = bitstring.Bits
 
@@ -23,7 +22,7 @@ class SignedChar(Object):
         return self.data.unpack('int:8')
 
 
-class SignedInt(Object):
+class SignedInt(NamedTuple):
     def __init__(self, data: bitstring.Bits) -> None:
         self.data = bitstring.Bits
 
@@ -35,7 +34,7 @@ class SignedInt(Object):
     pass
 
 
-class SignedLongInt(Object):
+class SignedLongInt(NamedTuple):
     def __init__(self, data: int) -> None:
         self.data = data
 
@@ -43,7 +42,7 @@ class SignedLongInt(Object):
         return str(self.data)
 
 
-class String(Object):
+class String(NamedTuple):
     def __init__(self, data: str) -> None:
         self.data = data
 
@@ -51,7 +50,7 @@ class String(Object):
         return self.data
 
 
-class Buffer(Object):
+class Buffer(NamedTuple):
     def __init__(self, data: bytes) -> None:
         self.data = data
 
@@ -59,7 +58,7 @@ class Buffer(Object):
         return str(self.data)
 
 
-class Pointer(Object):
+class Pointer(NamedTuple):
     def __init__(self, data: int) -> None:
         self.data = data
 
@@ -67,7 +66,7 @@ class Pointer(Object):
         return hex(self.data)
 
 
-class Time(Object):
+class Time(NamedTuple):
     def __init__(self, data: int) -> None:
         self.data = data
 
@@ -75,31 +74,32 @@ class Time(Object):
         return hex(self.data)
 
 
-class HashTable(Object):
-    def __init__(self, data: Dict[Object, Object]) -> None:
-        self.data = data
-
-class HData(Object):
-    def __init__(self, data: Dict[Object, Object]) -> None:
+class HashTable(NamedTuple):
+    def __init__(self, data: Dict[Any, Any]) -> None:
         self.data = data
 
 
-class Info(Object):
-    def __init__(self, data: Dict[Object, Object]) -> None:
+class HData(NamedTuple):
+    def __init__(self, data: Dict[Any, Any]) -> None:
         self.data = data
 
 
-class InfoList(Object):
-    def __init__(self, data: Dict[Object, Object]) -> None:
+class Info(NamedTuple):
+    def __init__(self, data: Dict[Any, Any]) -> None:
         self.data = data
 
 
-class Array(Object):
-    def __init__(self, data: Dict[Object, Object]) -> None:
+class InfoList(NamedTuple):
+    def __init__(self, data: Dict[Any, Any]) -> None:
+        self.data = data
+
+
+class Array(NamedTuple):
+    def __init__(self, data: Dict[Any, Any]) -> None:
         self.data = data
 
 
 class Message(object):
-    def __init__(self, id: str, objects: Sequence[Object]) -> None:
+    def __init__(self, id: str, objects: Sequence[Any]) -> None:
         self.id = id
         self.objects = objects
